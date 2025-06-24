@@ -31,8 +31,7 @@
 		$('#loading').fadeOut(500);
 	});
 
-	// 08. Nice Select Js
-	// $('select').niceSelect();
+
 
     ///////////////////////////////////////////////////
 	// 03. scroll-to-target 

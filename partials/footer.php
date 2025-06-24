@@ -10,7 +10,7 @@
                             data-wow-delay=.3s>
                             <div class="it-footer-widget footer-col-2-1">
                                 <div class="it-footer-logo pb-45">
-                                    <a href="/home"><img src="https://healingstreams.tv/images/logo@2x.png" alt=""></a>
+                                    <a href="index.php"><img src="https://healingstreams.tv/images/logo@2x.png" alt=""></a>
                                 </div>
                                 <div class=it-footer-contact-box>
                                     <div class="it-footer-contact mb-30 d-flex align-items-center">
@@ -81,8 +81,8 @@
                                 <h4 class=it-footer-title>LINKS</h4>
                                 <div class=it-footer-list>
                                     <ul style="color:white">
-                                        <li><a href="" style="color:white" >Kiddies magazine</a></li>
-                                        <li><a href="" style="color:white" >Pray with Me for Kids </a></li>
+                                        <li><a href="https://httnmagazine.org/subscribe" style="color:white" >Kiddies magazine</a></li>
+                                        <li><a href="" style="color:white" >Pray with me for Kids </a></li>
                                         <li><a href="" style="color:white" >Healing testimonies for Kids</a></li>
                                         <li><a href="" style="color:white" > Create your avatar </a></li>
                                     </ul>
@@ -96,8 +96,8 @@
                                 <div class=it-footer-list>
                                     <ul>
                                         <li><a href="https://healingstreams.tv/" style="color:white"> Healing Streams TV </a></li>
-                                        <li><a href="#" style="color:white" >HTTN Search </a></li>
-                                        <li><a href="#" style="color:white" >HTTN App </a></li>
+                                        <li><a href="https://httnmagazine.org/" style="color:white" >HTTN Search </a></li>
+                                        <li><a href="https://httnmagazine.org/" style="color:white" >HTTN App </a></li>
                                         <li><a href="https://herald.healingstreams.tv/" style="color:white" >HERALD </a></li>
                                         <li><a href="https://httnmagazine.org/" style="color:white" >HTTN Magazine  </a></li>
                                         <li><a href="https://enterthehealingschool.org/" style="color:white" > Enter the Healing School   </a></li>

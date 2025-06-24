@@ -12,7 +12,16 @@ require_once 'include/Session.php';
     HSLHS for Kids is designed to reach every child in the world with God's healing power.
     Healing Streams is the largest platform in the world for the preaching of the Gospel reaching and impacting billions of people globally">
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/hs-logo.png">
+    <meta name="keywords" content="HSLHS for Kids, healing, kiddies magazine, Healing Streams, Pastor Chris, healing to the nations, HERALD, HTTN magazine, miracles, healing school, largest crusade, soul winning, RevDr. Chris Oyakhilome">
+    <meta name=author content="Healing Streams Live Healing Services for Kids">
+    <meta name=theme-color content="#ffffff">
+    <meta property=og:title content="HSLHS for Kids | Healing Streams Live Healing Services with Pastor Chris">
+    <meta property="og:image" content="https://healingstreams.tv/images/favicon.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://healingstreams.tv/images/favicon.png">
+    <meta property="og:description" content="Welcome to the Healing Streams Live Healing Services Platform for Kids."/>
     <link rel=stylesheet href="assets/css/bootstrap.min.css">
     <link rel=stylesheet href="assets/css/animate.css">
     <link rel=stylesheet href="assets/css/custom-animation.css">
@@ -54,6 +63,12 @@ require_once 'include/Session.php';
             width: 1em;
             margin-left: -1em;
         }
+        .swiper-slide {
+    width: 100% !important; /* Or any larger fixed value like 800px */
+    max-width: 1000px;
+    margin: 0 auto; /* Center the wider slide */
+}
+
     </style>
 </head>
 
@@ -139,7 +154,7 @@ require_once 'include/Session.php';
                     <div class="col-xl-5 col-lg-6">
                         <div class="it-hero-thumb-box p-relative z-index">
                             <div class="it-hero-thumb p-relative" data-mask-src="assets/img/hero/thumb-1.png">
-                                <img src="assets\img\hero\jul25hslhs_card.jpg" alt="">
+                                <img src="assets/img/pastor_hero.jpg" alt="">
                             </div>
                             <div class=it-hero-shape-1>
                                 <img src="assets/img/hero/shape-1-1.png" alt="">
@@ -299,7 +314,8 @@ require_once 'include/Session.php';
                     <div class="col-xxl-7 col-xl-6 col-lg-6  wow itfadeRight" data-wow-duration=.9s data-wow-delay=.7s>
                         <div class="it-about-3-thumb-box p-relative text-end">
                             <div class=it-about-3-thumb data-mask-src="assets/img/about/Image.png">
-                                <img src="assets/img/about/thumb-3-1.jpg" alt="">
+                                <img src="assets/img/about/thumb-3-1.jpg" alt="" class="w-100">
+
                             </div>
                             <div class=it-about-3-shape-1>
                                 <img src="assets/img/about/shape-3-1.png" alt="">
@@ -510,7 +526,7 @@ require_once 'include/Session.php';
                                         </div>
                                         <div class="swiper-container it-testimonial-active">
                                             <div class=swiper-wrapper>
-                                                <div class=swiper-slide>
+                                                <div class=swiper-slide >
                                                     <div class=it-testimonial-content>
                                                         <div class="it-testimonial-rate pb-10">
                                                             <i class="fa-solid fa-star"></i>
@@ -536,7 +552,7 @@ require_once 'include/Session.php';
                                                         </div> --}} -->
                                                     </div>
                                                 </div>
-                                                <div class=swiper-slide>
+                                                <div class=swiper-slide >
                                                     <div class=it-testimonial-content>
                                                         <div class="it-testimonial-rate pb-10">
                                                             <i class="fa-solid fa-star"></i>
@@ -592,7 +608,7 @@ require_once 'include/Session.php';
             <div class="col-6 col-md-3 mb-30 wow itfadeUp" data-wow-duration=".9s" data-wow-delay=".3s">
                 <div class="it-service-item text-center">
                     <div class="it-service-icon z-index countdown-card" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-                        <span class="countdown-number" id="countdown-days" style="font-size: 3.5rem; font-weight: 700; color: ; text-shadow: 0 0 20px rgba(255,255,255,0.5);"></span>
+                        <span class="countdown-number" id="countdown-days" style="font-size: 3.5rem; font-weight: 700; text-shadow: 0 0 20px rgba(255,255,255,0.5);"></span>
                     </div>
                     <h4 class="it-service-title" style="color: white; margin-top: 15px; font-size: 1.2rem; letter-spacing: 1px;">Days</h4>
                 </div>
@@ -600,7 +616,7 @@ require_once 'include/Session.php';
             <div class="col-6 col-md-3 mb-30 wow itfadeUp" data-wow-duration=".9s" data-wow-delay=".5s">
                 <div class="it-service-item text-center">
                     <div class="it-service-icon z-index countdown-card" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-                        <span class="countdown-number" id="countdown-hours" style="font-size: 3.5rem; font-weight: 700; color: ; text-shadow: 0 0 20px rgba(255,255,255,0.5);"></span>
+                        <span class="countdown-number" id="countdown-hours" style="font-size: 3.5rem; font-weight: 700;  text-shadow: 0 0 20px rgba(255,255,255,0.5);"></span>
                     </div>
                     <h4 class="it-service-title" style="color: white; margin-top: 15px; font-size: 1.2rem; letter-spacing: 1px;">Hours</h4>
                 </div>
@@ -608,7 +624,7 @@ require_once 'include/Session.php';
             <div class="col-6 col-md-3 mb-30 wow itfadeUp" data-wow-duration=".9s" data-wow-delay=".7s">
                 <div class="it-service-item text-center">
                     <div class="it-service-icon z-index countdown-card" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-                        <span class="countdown-number" id="countdown-minutes" style="font-size: 3.5rem; font-weight: 700; color: ; text-shadow: 0 0 20px rgba(255,255,255,0.5);"></span>
+                        <span class="countdown-number" id="countdown-minutes" style="font-size: 3.5rem; font-weight: 700;  text-shadow: 0 0 20px rgba(255,255,255,0.5);"></span>
                     </div>
                     <h4 class="it-service-title" style="color: white; margin-top: 15px; font-size: 1.2rem; letter-spacing: 1px;">Minutes</h4>
                 </div>
@@ -616,7 +632,7 @@ require_once 'include/Session.php';
             <div class="col-6 col-md-3 mb-30 wow itfadeUp" data-wow-duration=".9s" data-wow-delay=".9s">
                 <div class="it-service-item text-center">
                     <div class="it-service-icon z-index countdown-card" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border-radius: 15px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-                        <span class="countdown-number" id="countdown-seconds" style="font-size: 3.5rem; font-weight: 700; color: ; text-shadow: 0 0 20px rgba(255,255,255,0.5);"></span>
+                        <span class="countdown-number" id="countdown-seconds" style="font-size: 3.5rem; font-weight: 700; text-shadow: 0 0 20px rgba(255,255,255,0.5);"></span>
                     </div>
                     <h4 class="it-service-title" style="color: white; margin-top: 15px; font-size: 1.2rem; letter-spacing: 1px;">Seconds</h4>
                 </div>
@@ -1045,7 +1061,7 @@ require_once 'include/Session.php';
                                     <img src="assets/img/choose/shape-2-2.png" alt="">
                                 </div>
                                 <div class="it-choose-2-thumb p-relative" data-mask-src="assets/img/choose/Image.png">
-                                    <img src="assets/img/choose/thumb-2.png" alt="">
+                                    <img src="assets/img/812B2E78_E0B5_4F95_B388_C472F7065A11.png" alt="" class="w-100">
                                     <div class=it-choose-2-icon>
                                         <a class=popup-video href="https://cdn1.kingscloud.co/kingscloud/files/680a191907c7fc367500e00c/22b8716c-f281-49bb-805e-1fceb1eabe3b?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJZ7R2RYYHYMD7OLA%2F20250617%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250617T123632Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bd87bd94d88af3c44d1d3bc57fd04792a9444430cd277af38cda70a8ab9653cd"><i
                                                 class="fa-regular fa-play"></i></a>
@@ -1591,16 +1607,17 @@ require_once 'include/Session.php';
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 var swiper = new Swiper(".swiper-container", {
-  speed: 20000, // 30 seconds transition duration
-//   loop: true,
-//   autoplay: {
-//     delay: 0,     // wait time between transitions (0 for continuous)
-//     disableOnInteraction: true
-//   },
-//   slidesPerView: 1,
-//   spaceBetween: 30,
-  // Add other options as needed
+  speed: 20000,
+  slidesPerView: 'auto',
+  centeredSlides: true,
+  spaceBetween: 30,
+  // loop: true,
+  // autoplay: {
+  //   delay: 0,
+  //   disableOnInteraction: true
+  // },
 });
+
 
 
     </script>

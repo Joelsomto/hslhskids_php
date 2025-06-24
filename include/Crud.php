@@ -25,14 +25,15 @@ class Crud
     }
 
     public function read($sql_query, $params = array())
-    {
-        $statement = $this->conn->prepare($sql_query);
-        foreach ($params as $param => $value) {
-            $statement->bindValue($param, $value);
-        }
-        $statement->execute(); // ✅ No $params here
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+{
+    $statement = $this->conn->prepare($sql_query);
+    foreach ($params as $param => $value) {
+        $statement->bindValue($param + 1, $value);
     }
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
     public function update($sql_query, $params = array()){
         try {

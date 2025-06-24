@@ -198,7 +198,8 @@
 {"zone_id":"28882","regionId":"9","zone_name":"SPREAD FAITH CAMPAIGN","ref":"SFC1","mag_ref":"SFC1","status":"0","familyId":"66","type":"1","centres":"0","checked":"0","moved":"2"},
 {"zone_id":"28885","regionId":"19","zone_name":"HS Global Response Center UK, Europe, Canada Region","ref":"GRC1","mag_ref":"GRC2","status":"0","familyId":"0","type":"2","centres":"0","checked":"1","moved":"1"},
 {"zone_id":"28888","regionId":"19","zone_name":"HS Global Response Center US Regions","ref":"GRC2","mag_ref":"GRC2","status":"0","familyId":"0","type":"1","centres":"0","checked":"1","moved":"1"},
-{"zone_id":"28891","regionId":"19","zone_name":"HS Global Response Center Africa Region","ref":"GRC3","mag_ref":"GRC3","status":"0","familyId":"0","type":"1","centres":"0","checked":"1","moved":"1"}
+{"zone_id":"28891","regionId":"19","zone_name":"HS Global Response Center Africa Region","ref":"GRC3","mag_ref":"GRC3","status":"0","familyId":"0","type":"1","centres":"0","checked":"1","moved":"1"},
+{"zone_id":"28892","regionId":"19","zone_name":"Not Applicable","ref":"NA","mag_ref":"NA","status":"0","familyId":"0","type":"1","centres":"0","checked":"1","moved":"1"}
 ]
 }
 ]

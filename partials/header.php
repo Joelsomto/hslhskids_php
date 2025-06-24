@@ -6,7 +6,7 @@
                         <div class="it-header-top-left text-center text-sm-start">
                             <ul>
                                 <li class="d-none d-xl-inline-block"><i class=flaticon-phone-call></i><a
-                                        href="">+2342013300167, +27799675852, +18327249390</a></li>
+                                        href="">+2342013300167, +27799675852</a></li>
                                 <li><i class=flaticon-email></i><a
                                         href="mailto:info@healingstreams.tv">info@healingstreams.tv</a>
                                 </li>
@@ -23,7 +23,7 @@
                                         <div id=it-header-top-lang class="it-header-top-lang d-none d-sm-block">
                                             <ul>
                                                 <li>
-    <a href="javascript:void(0)">
+    <a href="javascript:void(0)" style="color:white">
         <!-- <img src="assets/img/hero/img.png" alt=""> -->
         English
         <span>
@@ -32,7 +32,7 @@
             </svg>
         </span>
     </a>
-    <ul class="it-header-top-lang-submenu">
+    <ul class="it-header-top-lang-submenu" style="width: 100%;">
         <li>
             <!-- Google Translate Widget will appear here -->
             <div id="google_translate_element" style="width: 100%;"></div>
@@ -65,7 +65,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-6">
                             <div class=it-header-logo>
-                                <a href="index.php"><img src="https://healingstreams.tv/images/logo@2x.png" alt="" style="width:1000px"></a>
+                                <a href="index.php"><img src="https://healingstreams.tv/images/logo@2x.png" alt="" style="width:700px"></a>
                             </div>
                         </div>
                         <div class="col-xl-7 d-none d-xl-block">
@@ -114,6 +114,27 @@
                                                 About us
                                             </a>
                                         </li>
+                                        <li class="has-dropdown">
+    <a href="live.php">
+        <span>
+            <!-- Live TV Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                width="16" 
+                height="16">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"></rect>
+                <polygon points="10,9 15,12 10,15" fill="currentColor"></polygon>
+            </svg>
+        </span>
+        Live TV
+    </a>
+    <ul class="it-submenu submenu">
+        <li><a href="live.php">Live</a></li>
+    </ul> 
+</li>
+
                                         <!-- 
                                         <li class=has-dropdown>
                                             <a href=program.html>
@@ -242,6 +263,7 @@
                                                 <li><a href=blog-details.html>Blog Details</a></li> -->
                                             </ul> 
                                         </li>
+                                        
                                         <!-- <li>
                                             <a href="">
                                                 <span>

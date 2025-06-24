@@ -69,11 +69,11 @@ function validateInput() {
     $requiredFields = ['fullname', 'zone_id', 'age', 'country_id', 'state_id', 'city'];
     $data = [];
     $errors = [];
-    
+
     // Check if using email or phone
     $usingEmail = !empty($_POST['email']);
     $usingPhone = !empty($_POST['phone']);
-    
+
     if (!$usingEmail && !$usingPhone) {
         $errors['general'] = "Either email or phone number is required";
     }
@@ -85,12 +85,17 @@ function validateInput() {
     }
 
     if ($usingEmail) {
-            $data['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-            }
+        $data['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    }
 
     if ($usingPhone) {
         $phone = preg_replace('/[^0-9]/', '', $_POST['phone']);
-            $data['phone'] = $phone;
+        $data['phone'] = $phone;
+
+        // Only add country_code if phone is used
+        if (!empty($_POST['country_code'])) {
+            $data['country_code'] = filter_var($_POST['country_code'], FILTER_SANITIZE_STRING);
+        }
     }
 
     $data['fullname'] = filter_var($_POST['fullname'], FILTER_SANITIZE_STRING);
@@ -101,7 +106,6 @@ function validateInput() {
     $data['country_id'] = filter_var($_POST['country_id'], FILTER_VALIDATE_INT);
     $data['state_id'] = filter_var($_POST['state_id'], FILTER_VALIDATE_INT);
     $data['city'] = filter_var($_POST['city'], FILTER_SANITIZE_STRING);
-    $data['country_code'] = filter_var($_POST['country_code'], FILTER_SANITIZE_STRING);
 
     if (!empty($errors)) {
         throw new Exception(json_encode([

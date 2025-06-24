@@ -3929,7 +3929,7 @@ input[type=color] {
 }
 @media (max-width: 767px) {
   .it-testimonial-text p {
-    font-size: 13px;
+    font-size: 17px;
     width: auto;
   }
 }

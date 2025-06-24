@@ -140,7 +140,7 @@ $states = extractTableData($statesData, 'states') ?: [];
                     <div class="mb-3">
                         <label for="zone_id" class="form-label">Zone </label>
                         <select class="form-select healing-input" id="zone_id" name="zone_id" required style="display:inline;">
-                            <option value="98">Not Applicable</option>
+                            <option value="28892">Not Applicable</option>
                             <?php foreach ($zones as $zone): ?>
                                 <option value="<?= $zone['zone_id'] ?>"><?= $zone['zone_name'] ?></option>
                             <?php endforeach; ?>
@@ -464,7 +464,7 @@ $states = extractTableData($statesData, 'states') ?: [];
                     // Show download link with click handler
                     Swal.fire({
                         icon: 'success',
-                        title: 'Registration Complete!',
+                        title: 'Registration Completed!',
                         html: `
                     Thank you for registering.<br>
                     <a href="#" id="download-link">
