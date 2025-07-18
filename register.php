@@ -20,37 +20,37 @@ require_once __DIR__ . '/include/Controller.php';
 
 try {
     // Clean output buffer before processing
-    ob_get_clean();
+    ob_clean();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-       
+        $data = validateInput();
+        $Controller = new Controller();
+        
+        // Check if user already exists
+        $existingUser = $Controller->checkExistingUser($data['email'] ?? null, $data['phone'] ?? null, $data['country_code'] ?? null);
 
-    $data = validateInput();
-    $Controller = new Controller();
-    
-    // Check if user already exists
-    $existingUser = $Controller->checkExistingUser($data['email'] ?? null, $data['phone'] ?? null,  $data['country_code'] ?? null);
+        if ($existingUser) {
+            throw new Exception(json_encode([
+                'errors' => ['general' => 'You are already registered!'],
+                'message' => 'This email or phone number is already registered'
+            ]), 409); // 409 Conflict status code
+        }
+        
+        $registrationId = $Controller->registerKIds($data);
 
-    if ($existingUser) {
-        throw new Exception(json_encode([
-            'errors' => ['general' => 'You are already registered!'],
-            'message' => 'This email or phone number is already registered'
-        ]), 409); // 409 Conflict status code
+        echo json_encode([
+            'success' => true,
+            'message' => 'Registration successful',
+            'registration_id' => $registrationId
+        ]);
+        exit;
+    } else {
+        throw new Exception('Invalid request method');
     }
-    
-    $registrationId = $Controller->registerKIds($data);
-
-    echo json_encode([
-        'success' => true,
-        'message' => 'Registration successful',
-        'registration_id' => $registrationId
-    ]);
-    exit;
-}
 
 } catch (Exception $e) {
     // Clean any output
-    ob_end_clean();
+    ob_clean();
 
     $code = $e->getCode() ?: 400;
     http_response_code($code);
@@ -61,6 +61,17 @@ try {
     echo json_encode([
         'success' => false,
         'message' => $decoded ?: ['message' => $message]
+    ]);
+    exit;
+} catch (PDOException $e) {
+    // Clean any output
+    ob_clean();
+    
+    http_response_code(500);
+    
+    echo json_encode([
+        'success' => false,
+        'message' => ['message' => 'Database error: ' . $e->getMessage()]
     ]);
     exit;
 }

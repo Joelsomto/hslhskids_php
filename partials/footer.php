@@ -82,9 +82,9 @@
                                 <div class=it-footer-list>
                                     <ul style="color:white">
                                         <li><a href="https://httnmagazine.org/subscribe" style="color:white" >Kiddies magazine</a></li>
-                                        <li><a href="" style="color:white" >Pray with me for Kids </a></li>
-                                        <li><a href="" style="color:white" >Healing testimonies for Kids</a></li>
-                                        <li><a href="" style="color:white" > Create your avatar </a></li>
+                                        <li><a href="https://prayerclouds.org" style="color:white" >Pray with me for Kids </a></li>
+                                        <li><a href="live.php#testimonies" style="color:white" >Healing testimonies for Kids</a></li>
+                                        <!-- <li><a href="" style="color:white" > Create your avatar </a></li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                                 <div class=it-footer-list>
                                     <ul>
                                         <li><a href="https://healingstreams.tv/" style="color:white"> Healing Streams TV </a></li>
-                                        <li><a href="https://httnmagazine.org/" style="color:white" >HTTN Search </a></li>
+                                        <li><a href="https://healingstreams.tv/LHS/index.php#searchModal" style="color:white" >HTTN Search </a></li>
                                         <li><a href="https://httnmagazine.org/" style="color:white" >HTTN App </a></li>
                                         <li><a href="https://herald.healingstreams.tv/" style="color:white" >HERALD </a></li>
                                         <li><a href="https://httnmagazine.org/" style="color:white" >HTTN Magazine  </a></li>

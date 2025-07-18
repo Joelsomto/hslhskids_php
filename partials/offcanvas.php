@@ -11,8 +11,7 @@
                 </a>
             </div>
             <div class=itoffcanvas__text>
-                <p>Suspendisse interdum consectetur libero id. Fermentum leo vel orci porta non. Euismod viverra nibh
-                    cras pulvinar suspen.</p>
+                <p></p>
             </div>
             <div class=it-menu-mobile></div>
             <div class=itoffcanvas__info>

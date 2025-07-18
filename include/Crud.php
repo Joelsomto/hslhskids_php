@@ -28,7 +28,7 @@ class Crud
 {
     $statement = $this->conn->prepare($sql_query);
     foreach ($params as $param => $value) {
-        $statement->bindValue($param + 1, $value);
+        $statement->bindValue($param, $value);
     }
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_ASSOC);

@@ -3,6 +3,8 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 require_once 'include/Session.php';
+require_once 'include/Controller.php';
+$Controller = new Controller();
 
 ?>
 <!doctype html>
@@ -50,6 +52,7 @@ require_once 'include/Session.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.css">
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
     <style>
@@ -142,6 +145,48 @@ require_once 'include/Session.php';
         .btn-invite:hover {
             background-color: #5e34a8;
         }
+    </style>
+    <style>
+        .participation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.participation-modal .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+.participation-modal input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+.participation-modal button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.participation-modal button:hover {
+    background-color: #45a049;
+}
     </style>
 </head>
 
@@ -288,18 +333,84 @@ require_once 'include/Session.php';
                                     <p class="program-description">Get ready for an amazing live event where you can experience God’s love and healing power like never before!</p>
                                 </div>
                                 <div class="program-actions">
-                                    <button class="btn-salvation">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn-salvation" data-bs-toggle="modal" data-bs-target="#salvationModal">
                                         <i class="fas fa-cross"></i> Receive Salvation
                                     </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="salvationModal" tabindex="-1" aria-labelledby="salvationModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-md">
+                                            <div class="modal-content">
+                                                <div class="modal-header border-0">
+                                                    <h5 class="modal-title" id="salvationModalLabel">A Prayer Of Salvation</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <img src="https://healingstreams.tv/images/salvation_pic.jpg" alt="Salvation" class="img-fluid rounded mb-3" />
+                                                    <p class="text-start" style="line-height: 1.6;">
+                                                        O Lord God, I believe with all my heart in Jesus Christ, Son of the living God.
+                                                        I believe He's alive today. I confess with my mouth that Jesus Christ is the Lord of my life from this day.<br><br>
+                                                        Through Him and in His Name, I have eternal life, I'm born again.
+                                                        Thank You Lord, for saving my soul! I'm now a child of God. Hallelujah!
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer border-0">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <a href="assets/magazine/Jun2025_HTTN_Magazine_For_Kids_June_2025.pdf" download class="btn-magazine">
                                         <i class="fas fa-download"></i> Download Magazine
                                     </a>
                                     <a href="https://healingstreams.tv/donate.php/?rl=5" class="btn-give" target="_blank" rel="noopener noreferrer">
                                         <i class="fas fa-gift"></i> Give
                                     </a>
-                                    <button class="btn-invite">
+                                    <?php
+                                    // Get current website URL
+                                    $siteUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
+                                        . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                                    ?>
+
+                                    <!-- Invite Button -->
+                                    <button type="button" class="btn-invite" data-bs-toggle="modal" data-bs-target="#inviteModal">
                                         <i class="fas fa-user-plus"></i> Invite Others
                                     </button>
+
+                                    <!-- Invite Modal -->
+                                    <div class="modal fade" id="inviteModal" tabindex="-1" aria-labelledby="inviteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content text-center">
+                                                <div class="modal-header border-0">
+                                                    <h5 class="modal-title w-100" id="inviteModalLabel">Invite Others</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Share this site with others on:</p>
+                                                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($siteUrl) ?>" target="_blank" class="btn btn-primary">
+                                                            <i class="fab fa-facebook-f"></i> Facebook
+                                                        </a>
+                                                        <a href="https://twitter.com/intent/tweet?url=<?= urlencode($siteUrl) ?>" target="_blank" class="btn btn-info text-white">
+                                                            <i class="fab fa-twitter"></i> Twitter
+                                                        </a>
+                                                        <a href="https://api.whatsapp.com/send?text=<?= urlencode($siteUrl) ?>" target="_blank" class="btn btn-success">
+                                                            <i class="fab fa-whatsapp"></i> WhatsApp
+                                                        </a>
+                                                        <a href="mailto:?subject=Check this out&body=<?= urlencode($siteUrl) ?>" class="btn btn-dark">
+                                                            <i class="fas fa-envelope"></i> Email
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer border-0">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -392,7 +503,7 @@ require_once 'include/Session.php';
             </div>
         </div>
 
-        <div class="it-event-area pt-115 pb-90">
+        <div class="it-event-area pt-115 pb-90" id="testimonies">
             <div class=container>
                 <div class="row justify-content-center">
                     <div class=col-xl-7>
@@ -606,6 +717,100 @@ require_once 'include/Session.php';
                 });
             });
         </script>
+        <?php
+require_once 'include/Controller.php';
+$Controller = new Controller();
+
+// Process form submission if posted
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_submit'])) {
+    $email = $_POST['email'] ?? null;
+    $participantCount = intval($_POST['participant_count'] ?? 1);
+    $ipAddress = $_SERVER['REMOTE_ADDR'];
+    
+    // Check if user exists in registration tables
+    $isRegistered = false;
+    $userId = null;
+    $userType = null;
+    
+    if ($email) {
+        $isRegistered = $Controller->checkExistingUser($email);
+        if ($isRegistered) {
+            $userId = $Controller->getUserIdByEmail($email);
+            $userType = 'email';
+        }
+    }
+    
+    // Prepare participation data
+    $participationData = [
+        'user_id' => $userId,
+        'user_type' => $userType,
+        'participant_count' => $participantCount,
+        'email' => $email,
+        'day_number' => 1, // Today is day 1
+        'participation_date' => date('Y-m-d'),
+        'ip_address' => $ipAddress,
+        'is_registered' => $isRegistered ? 1 : 0
+    ];
+    
+    // Check for existing participation today
+    if ($userId) {
+        $existingParticipation = $Controller->getTodaysParticipation($userId, $userType);
+        if ($existingParticipation) {
+            // Update existing record
+            $Controller->updateParticipation($existingParticipation['id'], $participationData);
+        } else {
+            // Create new record
+            $Controller->participants($participationData);
+        }
+    } else {
+        // Create new record for unregistered user
+        $Controller->participants($participationData);
+    }
+    
+    // Set session flag to prevent showing modal again today
+    $_SESSION['participated_today'] = true;
+}
+?>
+
+<!-- Bootstrap Modal HTML -->
+<div class="modal fade" id="participantModal" tabindex="-1" aria-labelledby="participantModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="participantModalLabel">Event Participation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="POST" action="">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="participant_count" class="form-label">Number of Participants</label>
+            <input type="number" class="form-control" id="participant_count" name="participant_count" min="1" value="1" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" name="participant_submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<?php
+// Show modal only if user hasn't participated today
+if (empty($_SESSION['participated_today'])): ?>
+<script>
+  // Show modal on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    var participantModal = new bootstrap.Modal(document.getElementById('participantModal'));
+    participantModal.show();
+  });
+</script>
+<?php endif; ?>
+
 
         <!-- Include HLS.js for streaming playback -->
         <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>

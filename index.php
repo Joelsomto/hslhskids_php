@@ -298,7 +298,7 @@ require_once 'include/Session.php';
                                     </div> --}} -->
                                 </div>
                             </div>
-                            <a class="it-btn circle-effect" href="">
+                            <a class="it-btn circle-effect" href="live.php">
                                 <span>
                                     Let’s see God’s power together! ✨
                                     <svg width=15 height=14 viewBox="0 0 15 14" fill=none
@@ -1565,6 +1565,32 @@ require_once 'include/Session.php';
             </div>
         </div> --}} -->
 
+<!-- Healing Streams Live Modal -->
+<div class="modal fade" id="healingLiveModal" tabindex="-1" aria-labelledby="healingLiveModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header  text-white" style="background-color: #1F90A2;">
+        <h5 class="modal-title" id="healingLiveModalLabel">🌟 Healing Streams is LIVE!</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="https://christembassy.org/wp-content/uploads/2025/06/JULY_2025_HSLHS_ETHS-min.jpg" alt="Healing Streams" class="img-fluid rounded mb-3">
+        <p class="fw-bold fs-5">Join the global stream of miracles, healing and divine transformation!</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a href="live.php" class="btn text-white" style="background-color: #1F90A2;">
+          ▶️ Watch Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = new bootstrap.Modal(document.getElementById('healingLiveModal'));
+    setTimeout(() => modal.show(), 800); // show after 800ms
+  });
+</script>
 
 
 
@@ -1594,7 +1620,7 @@ require_once 'include/Session.php';
     <script src="assets/js/swiper-bundle.js"></script>
     <script src="assets/js/isotope-pkgd.js"></script>
     <script src="assets/js/imagesloaded-pkgd.js"></script>
-    <script src="assets/js/ajax-form.js"></script>
+    <!-- <script src="assets/js/ajax-form.js"></script> -->
     <script src="assets/js/main.js"></script>
     <!-- Bootstrap JS + Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -77,7 +77,7 @@ $states = extractTableData($statesData, 'states') ?: [];
                         <div class="tab-pane fade show active" id="email-tab-pane" role="tabpanel">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control healing-input" id="email" name="email" placeholder="your@email.com">
+                                <input type="email"  autocapitalize="off" spellcheck="false" autocomplete="email" class="form-control healing-input" id="email" name="email" placeholder="your@email.com">
                                 <div class="invalid-feedback" id="email-error"></div>
                             </div>
                         </div>
@@ -548,3 +548,16 @@ $states = extractTableData($statesData, 'states') ?: [];
         }
     });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const inputs = ['email', 'fullname', 'phone', 'city'];
+    inputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.setAttribute('autocapitalize', id === 'fullname' || id === 'city' ? 'words' : 'off');
+            el.setAttribute('spellcheck', 'false');
+        }
+    });
+});
+</script>
+
