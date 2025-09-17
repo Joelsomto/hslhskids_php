@@ -494,10 +494,10 @@ $states = extractTableData($statesData, 'states') ?: [];
                                 }).catch(e => console.error('Tracking failed:', e));
 
                                 // Trigger actual file download
-                                const fileUrl = './assets/magazine/Jun2025_HTTN_Magazine_For_Kids_June_2025.pdf';
+                                const fileUrl = './assets/magazine/HTTN_Magazine_For_Kids_September_2025_FOR_PRINT.pdf';
                                 const a = document.createElement('a');
                                 a.href = fileUrl;
-                                a.download = 'HTTN_Magazine_June_2025.pdf';
+                                a.download = 'HTTN_Magazine_For_Kids_September_2025.pdf';
                                 document.body.appendChild(a);
                                 a.click();
                                 document.body.removeChild(a);
