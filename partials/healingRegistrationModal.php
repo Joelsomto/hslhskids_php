@@ -137,7 +137,7 @@ $states = extractTableData($statesData, 'states') ?: [];
                         <input type="text" class="form-control healing-input" id="fullname" name="fullname" placeholder="Your full name" required>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3" id="zone_field_wrapper">
                         <label for="zone_id" class="form-label">Zone </label>
                         <select class="form-select healing-input" id="zone_id" name="zone_id" required style="display:inline;">
                             <option value="28892">Not Applicable</option>
@@ -146,6 +146,7 @@ $states = extractTableData($statesData, 'states') ?: [];
                             <?php endforeach; ?>
 
                         </select>
+                        <div id="zone_auto_msg" class="form-text" style="display:none;margin-top:6px;color:#198754;">Zone set automatically from your link.</div>
                     </div>
 
                     <div class="mb-3">
@@ -295,6 +296,39 @@ $states = extractTableData($statesData, 'states') ?: [];
             },
             maxOptions: null, // Remove limit on displayed options
         });
+
+        // Zone ref handling from URL
+        try {
+            const url = new URL(window.location.href);
+            const ref = url.searchParams.get('ref') || (url.pathname.includes('/kids/ref/') ? url.pathname.split('/kids/ref/')[1] : null);
+            if (ref) {
+                // Fetch zones mapping by ref from embedded JSON (loaded server-side into page as zones array via PHP)
+                // Build a quick lookup map from existing <option> text by matching data from zones.json via AJAX
+                fetch('data/zones.json')
+                    .then(r => r.json())
+                    .then(json => {
+                        const items = Array.isArray(json) ? json : [];
+                        let zonesData = [];
+                        if (items.length) {
+                            const table = items.find(i => i && i.type === 'table' && i.name === 'zones');
+                            zonesData = (table && table.data) ? table.data : [];
+                        }
+                        const matched = zonesData.find(z => (z.ref || '').toLowerCase() === ref.toLowerCase());
+                        if (matched && matched.zone_id) {
+                            zoneTS.setValue(String(matched.zone_id), true);
+                            const wrapper = document.getElementById('zone_field_wrapper');
+                            const helper = document.getElementById('zone_auto_msg');
+                            if (wrapper) {
+                                wrapper.style.display = 'none';
+                            }
+                            if (helper) {
+                                helper.style.display = 'block';
+                            }
+                        }
+                    })
+                    .catch(() => {});
+            }
+        } catch(e) {}
 
         const countryTS = new TomSelect('#country_id', {
             create: false,

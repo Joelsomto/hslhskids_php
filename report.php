@@ -2,7 +2,23 @@
 require_once 'include/Session.php';
 require_once 'include/Controller.php';
 $Controller = new Controller;
-$reportsData = $Controller->getReports();
+
+// Month filter from query param ?month=Jan|Feb...
+$filterMonth = null;
+if (isset($_GET['month'])) {
+    $m = strtoupper(substr(preg_replace('/[^A-Za-z]/', '', $_GET['month']), 0, 3));
+    $valid = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    if (in_array($m, $valid, true)) {
+        // keep original case like Jan
+        $map = [
+            'JAN'=>'Jan','FEB'=>'Feb','MAR'=>'Mar','APR'=>'Apr','MAY'=>'May','JUN'=>'Jun',
+            'JUL'=>'Jul','AUG'=>'Aug','SEP'=>'Sep','OCT'=>'Oct','NOV'=>'Nov','DEC'=>'Dec'
+        ];
+        $filterMonth = $map[$m];
+    }
+}
+
+$reportsData = $Controller->getReports($filterMonth);
 
 // Load location data
 $dir = __DIR__;
@@ -72,6 +88,8 @@ foreach ($states as $state) {
             padding: 20px;
             background-color: #f9f9f9;
         }
+        .filters { display:flex; align-items:center; gap:12px; margin:10px 0; }
+        .filters select { padding:6px 10px; }
         .section-title {
             border-bottom: 2px solid #4a90e2;
             padding-bottom: 10px;
@@ -134,6 +152,19 @@ foreach ($states as $state) {
         <!-- Summary Registration Section -->
         <div class="report-section">
             <h2 class="section-title">1. Summary Registration</h2>
+            <div class="filters">
+                <form method="get">
+                    <label for="month">Filter by month:</label>
+                    <select name="month" id="month" onchange="this.form.submit()">
+                        <?php $months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                        $sel = $filterMonth ?: ''; foreach ($months as $m): ?>
+                        <option value="<?php echo $m; ?>" <?php echo ($sel===$m)?'selected':''; ?>><?php echo $m; ?></option>
+                        <?php endforeach; ?>
+                        <option value="" <?php echo $sel===''?'selected':''; ?>>All</option>
+                    </select>
+                    <noscript><button type="submit">Apply</button></noscript>
+                </form>
+            </div>
             <div class="summary-stats">
                 <div class="stat-card">
                     <div class="stat-value"><?php echo $reportsData['total_registrations'] ?? 0; ?></div>

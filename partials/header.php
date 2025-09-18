@@ -245,6 +245,14 @@
                                         </li> 
                                          -->
                                         
+                                        <li>
+                                            <a href="kids-blog.php">
+                                                <span>
+                                                    <svg width=16 height=16 viewBox="0 0 16 16" fill=none xmlns="http://www.w3.org/2000/svg"><path d="M3 2h10a1 1 0 011 1v10l-4-2-4 2-4-2v-8a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                                                </span>
+                                                Kids Blog
+                                            </a>
+                                        </li>
                                         <li class=has-dropdown>
                                             <a href="">
                                                 <span>
