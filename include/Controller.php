@@ -83,7 +83,7 @@ class Controller
 
         // Save registration month meta
         try {
-            $regMonth = date('M'); // Jan, Feb, ...
+            $regMonth = date('M'); 
             $this->addRegistrationMeta($table === 'hslhs_kids_email' ? 'email' : 'phone', (int)$insertId, $regMonth);
         } catch (Exception $e) {
             // swallow meta errors to not block registration
