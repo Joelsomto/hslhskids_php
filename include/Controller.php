@@ -8,6 +8,7 @@ class Controller
     public function __construct()
     {
         $this->crud = new Crud();
+        $this->ensureRegistrationMetaTable();
     }
 
     public function registerUser($data)
@@ -100,6 +101,20 @@ class Controller
             'reg_month' => $regMonth,
         ];
         return $this->crud->create($meta, 'hslhs_kids_registration_meta');
+    }
+
+    private function ensureRegistrationMetaTable()
+    {
+        $sql = "CREATE TABLE IF NOT EXISTS hslhs_kids_registration_meta (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            reg_table ENUM('email','phone') NOT NULL,
+            reg_id INT NOT NULL,
+            reg_month CHAR(3) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            KEY idx_reg (reg_table, reg_id),
+            KEY idx_month (reg_month)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        $this->crud->update($sql, []);
     }
 
 
