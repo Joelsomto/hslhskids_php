@@ -79,7 +79,27 @@ class Controller
             throw new Exception("No valid contact method found.");
         }
 
-        return $this->crud->create($data, $table);
+        $insertId = $this->crud->create($data, $table);
+
+        // Save registration month meta
+        try {
+            $regMonth = date('M'); // Jan, Feb, ...
+            $this->addRegistrationMeta($table === 'hslhs_kids_email' ? 'email' : 'phone', (int)$insertId, $regMonth);
+        } catch (Exception $e) {
+            // swallow meta errors to not block registration
+        }
+
+        return $insertId;
+    }
+
+    public function addRegistrationMeta($regTable, $regId, $regMonth)
+    {
+        $meta = [
+            'reg_table' => $regTable,
+            'reg_id' => (int)$regId,
+            'reg_month' => $regMonth,
+        ];
+        return $this->crud->create($meta, 'hslhs_kids_registration_meta');
     }
 
 
@@ -106,12 +126,21 @@ class Controller
         return !empty($result); // true if exists
     }
 
-    public function getReports()
+    public function getReports($filterMonth = null)
     {
         // Initialize the reports data array
         $reportsData = [];
 
         // 1. Get total summary statistics (combining both email and phone tables)
+        $whereMonthEmail = '';
+        $whereMonthPhone = '';
+        $params = [];
+        if ($filterMonth) {
+            $whereMonthEmail = "INNER JOIN hslhs_kids_registration_meta m1 ON m1.reg_table='email' AND m1.reg_id=e.id AND m1.reg_month = :m";
+            $whereMonthPhone = "INNER JOIN hslhs_kids_registration_meta m2 ON m2.reg_table='phone' AND m2.reg_id=p.id AND m2.reg_month = :m";
+            $params[':m'] = $filterMonth;
+        }
+
         $summaryQuery = "
         SELECT 
             COUNT(*) as total_registrations,
@@ -119,13 +148,13 @@ class Controller
             COUNT(DISTINCT state_id) as total_states,
             COUNT(DISTINCT city) as total_cities
         FROM (
-            SELECT country_id, state_id, city FROM hslhs_kids_email
+            SELECT e.country_id, e.state_id, e.city FROM hslhs_kids_email e $whereMonthEmail
             UNION ALL
-            SELECT country_id, state_id, city FROM hslhs_kids_phone
+            SELECT p.country_id, p.state_id, p.city FROM hslhs_kids_phone p $whereMonthPhone
         ) as combined
     ";
 
-        $summaryResult = $this->crud->read($summaryQuery);
+        $summaryResult = $this->crud->read($summaryQuery, $params);
         if (!empty($summaryResult)) {
             $reportsData = array_merge($reportsData, $summaryResult[0]);
         }
@@ -139,15 +168,15 @@ class Controller
             COUNT(DISTINCT state_id) as total_states,
             COUNT(DISTINCT city) as total_cities
         FROM (
-            SELECT zone_id, country_id, state_id, city FROM hslhs_kids_email
+            SELECT e.zone_id, e.country_id, e.state_id, e.city FROM hslhs_kids_email e $whereMonthEmail
             UNION ALL
-            SELECT zone_id, country_id, state_id, city FROM hslhs_kids_phone
+            SELECT p.zone_id, p.country_id, p.state_id, p.city FROM hslhs_kids_phone p $whereMonthPhone
         ) as combined
         GROUP BY zone_id
         ORDER BY total_registrations DESC
     ";
 
-        $zonesResult = $this->crud->read($zonesQuery);
+        $zonesResult = $this->crud->read($zonesQuery, $params);
         if (!empty($zonesResult)) {
             $reportsData['zones'] = $zonesResult;
         }
@@ -161,15 +190,15 @@ class Controller
             COUNT(DISTINCT state_id) as total_states,
             COUNT(DISTINCT city) as total_cities
         FROM (
-            SELECT country_id, zone_id, state_id, city FROM hslhs_kids_email
+            SELECT e.country_id, e.zone_id, e.state_id, e.city FROM hslhs_kids_email e $whereMonthEmail
             UNION ALL
-            SELECT country_id, zone_id, state_id, city FROM hslhs_kids_phone
+            SELECT p.country_id, p.zone_id, p.state_id, p.city FROM hslhs_kids_phone p $whereMonthPhone
         ) as combined
         GROUP BY country_id, zone_id
         ORDER BY total_registrations DESC
     ";
 
-        $countriesResult = $this->crud->read($countriesQuery);
+        $countriesResult = $this->crud->read($countriesQuery, $params);
         if (!empty($countriesResult)) {
             $reportsData['countries'] = $countriesResult;
         }
